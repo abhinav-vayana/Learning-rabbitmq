@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"log"
+	"os"
 	"strings"
 
 	"github.com/streadway/amqp"
@@ -34,11 +35,11 @@ func main() {
 		log.Fatalf("Failed to declare a queue: %v", err)
 	}
 
-	// reader := bufio.NewReader(os.Stdin)
-	// fmt.Println("🔁 Enter messages to send to RabbitMQ (type 'exit' to quit):")
-	// sendingFromTerminal(reader, ch, q)
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println("🔁 Enter messages to send to RabbitMQ (type 'exit' to quit):")
+	sendingFromTerminal(reader, ch, q)
 
-	sendingLargeNumberOfMessages(ch, q, 100000)
+	// sendingLargeNumberOfMessages(ch, q, 100000)
 
 }
 func sendingFromTerminal(reader *bufio.Reader, ch *amqp.Channel, q amqp.Queue) {
